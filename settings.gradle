@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "HolaMundo"
+rootProject.name = "NexusDigital"
 include ':app'

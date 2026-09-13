@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.ispc.holamundo'
+    namespace 'com.ispc.nexusdigital'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.ispc.holamundo"
+        applicationId "com.ispc.nexusdigital"
         minSdk 24
         targetSdk 33
         versionCode 1
