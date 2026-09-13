@@ -1,32 +1,27 @@
+## Proyecto Aplicación Móvil | Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales | ISPC 
+
+
+
+
 # Nexus Digital - Aplicación Móvil
 
-## Descripción
 
-Este repositorio se utiliza para el desarrollo de la aplicación móvil de Nexus Digital, como parte del Proyecto Integrador del módulo de Desarrollo de Aplicaciones Móviles.
 
-El módulo integra contenidos de Aplicaciones Móviles, Testeador de Software y Ciberseguridad, aplicados al desarrollo y evaluación del proyecto.
 
-## Objetivo del repositorio
+Aplicación móvil nativa de Nexus Digital, desarrollada para dispositivos Android como extensión de la plataforma de compra y venta de productos a nivel local en la provincia de Córdoba.
 
-Este repositorio se utiliza para almacenar, desarrollar y gestionar el código correspondiente a la **aplicación móvil de Nexus Digital**.
 
-La aplicación permitirá a los usuarios acceder desde dispositivos móviles a las funcionalidades de la plataforma y consumir los servicios proporcionados por el backend.
 
-## Proyecto
 
-**Nexus Digital**
+## Integrantes
 
-Este desarrollo forma parte del **Proyecto Integrador** y se encuentra relacionado con los demás componentes del sistema.
 
-## Equipo
 
-* Griselda Leonor Aguirre
-* Juan Ignacio Alonso
-* Yohana Eugenia Grosso
-* Laura Molina
-* Augusto Andrés Raffaeli
-* María Soledad Scarlata
 
----
+- **Griselda Leonor Aguirre** — Product Owner / Developer
+- **Juan Ignacio Alonso** — Scrum Master / Developer
+- **Yohana Eugenia Grosso** — Developer
+- **Laura Molina** — Developer
+- **Augusto Andrés Raffaeli** — Developer
+- **María Soledad Scarlata** — Developer
 
-**Instituto Superior Politécnico Córdoba (ISPC)**
