@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.HolaMundo" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.NexusDigital" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.HolaMundo" parent="Base.Theme.HolaMundo" />
+    <style name="Theme.NexusDigital" parent="Base.Theme.NexusDigital" />
 </resources>
