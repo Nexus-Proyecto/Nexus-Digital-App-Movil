@@ -25,6 +25,27 @@ Aplicación móvil nativa de Nexus Digital, desarrollada para dispositivos Andro
 - **Augusto Andrés Raffaeli** — Developer
 - **María Soledad Scarlata** — Developer
 
+
+## Propuesta de Valor
+
+
+Nexus Digital ofrece una solución digital orientada al comercio local en Córdoba.
+
+La aplicación móvil permite trasladar la experiencia de la plataforma al entorno Android, facilitando el acceso a los productos y a las principales funcionalidades del sistema desde dispositivos móviles.
+
+
+## Tecnologías Utilizadas
+
+- Android Studio
+- Java
+- JDK 17
+- Android SDK
+- API REST
+- Backend: Django REST Framework
+- Base de Datos: MySQL
+
+
+
 ## Pantallas / Activities
 
 
