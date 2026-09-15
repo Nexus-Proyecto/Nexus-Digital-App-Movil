@@ -1,4 +1,4 @@
-## Proyecto Aplicación Móvil | Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales | ISPC 
+## Proyecto Aplicación Móvil | Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales | ISPC
 
 
 
@@ -25,9 +25,6 @@ Aplicación móvil nativa de Nexus Digital, desarrollada para dispositivos Andro
 - **Augusto Andrés Raffaeli** — Developer
 - **María Soledad Scarlata** — Developer
 
-
-
-**Instituto Superior Politécnico Córdoba (ISPC)**
 
 
 ## Requerimientos Funcionales
