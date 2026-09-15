@@ -31,7 +31,7 @@ Aplicación móvil nativa de Nexus Digital, desarrollada para dispositivos Andro
 La aplicación estará organizada inicialmente en las siguientes pantallas principales:
 
 
-| Integrante | Pantalla / Activity    | Clase Java              | Layout XML              | Responsabilidad                                                     |#
+| Integrante | Pantalla / Activity    | Clase Java              | Layout XML              | Responsabilidad                                                     |
 | ---------- | ---------------------- | ----------------------- | ----------------------- | ------------------------------------------------------------------- |
 | Laura Molina     | Splash / Bienvenida    | `SplashActivity.java`   | `activity_splash.xml`   | Pantalla inicial y validación de sesión.                            |
 | Soledad Scarlata      | Login                  | `LoginActivity.java`    | `activity_login.xml`    | Autenticación del usuario mediante la API.                          |
