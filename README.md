@@ -57,3 +57,47 @@ Aplicación móvil nativa de Nexus Digital, desarrollada para dispositivos Andro
 | **RNF06** | La aplicación debe ofrecer tiempos de respuesta adecuados durante las operaciones realizadas por el usuario.                   |
 
 
+## Entorno de Desarrollo
+
+## Para el desarrollo y las pruebas se utilizarán:
+
+Android Studio.
+JDK 17.
+Android SDK.
+Dispositivos Android físicos.
+Cable USB de datos para ejecutar y probar la aplicación desde Android Studio.
+
+## Conexión con Nexus Digital Web
+
+La aplicación móvil forma parte del proyecto Nexus Digital y reutiliza el backend desarrollado previamente.
+
+La comunicación seguirá el siguiente flujo:
+
+Usuario
+│
+Aplicación Android
+│
+API REST
+│
+Django REST Framework
+│
+MySQL
+
+Esto permite que la aplicación móvil utilice los servicios y datos proporcionados por el backend de Nexus Digital.
+
+## Instalación
+
+## Requisitos previos
+Android Studio instalado.
+JDK 17.
+Android SDK configurado.
+Dispositivo Android para pruebas o emulador.
+Acceso al backend de Nexus Digital.
+
+## Pruebas
+
+La aplicación será probada inicialmente en dispositivos Android físicos mediante conexión USB y utilizando las herramientas de depuración proporcionadas por Android Studio.
+
+## Documentación
+
+La documentación correspondiente al proyecto se encontrará disponible en la wiki del repositorio.

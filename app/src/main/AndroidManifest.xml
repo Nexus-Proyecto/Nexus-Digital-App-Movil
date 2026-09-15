@@ -13,12 +13,7 @@
         android:theme="@style/Theme.NexusDigital"
         tools:targetApi="31">
 
-        <!-- MainActivity queda como pantalla secundaria -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-
-        <!-- SplashActivity pasa a ser la pantalla inicial de la app -->
+        <!-- SplashActivity es la pantalla inicial de la app -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -29,7 +24,22 @@
             </intent-filter>
         </activity>
 
-    </application>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false" />
 
     </application>
+
 </manifest>
