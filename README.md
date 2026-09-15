@@ -89,6 +89,7 @@ MySQL
 Esto permite que la aplicación móvil utilice los servicios y datos proporcionados por el backend de Nexus Digital.
 
 ## Instalación
+
 ## Requisitos previos
 Android Studio instalado.
 JDK 17.
