@@ -11,4 +11,8 @@ public interface ApiService {
     @Headers("Content-Type: application/json")
     @POST("api/login/")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
+
+    @Headers("Content-Type: application/json")
+    @POST("api/register/")
+    Call<Void> register(@Body RegisterRequest registerRequest);
 }
