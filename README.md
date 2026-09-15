@@ -54,7 +54,7 @@ La aplicación móvil permitirá:
 * Consultar la información del usuario.
 * Cerrar sesión.
 * Comunicarse con el backend mediante la API REST.
-  #
+  
 
 
 
