@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    tools:context=".ContactoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contacto y Soporte"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+        <EditText
+            android:id="@+id/etNombreContacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tu Nombre Completo"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/etEmailContacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tu Correo Electrónico"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/etMensajeContacto"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="Escribe tu consulta o sugerencia aquí..."
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:background="@android:drawable/editbox_background"
+            android:padding="8dp"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/btnEnviarContacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enviar Mensaje"
+            android:backgroundTint="#00838F"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>
