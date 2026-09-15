@@ -25,6 +25,38 @@ Aplicación móvil nativa de Nexus Digital, desarrollada para dispositivos Andro
 - **Augusto Andrés Raffaeli** — Developer
 - **María Soledad Scarlata** — Developer
 
+## Pantallas / Activities
+
+
+La aplicación estará organizada inicialmente en las siguientes pantallas principales:
+
+
+| Integrante | Pantalla / Activity    | Clase Java              | Layout XML              | Responsabilidad                                                     |#
+| ---------- | ---------------------- | ----------------------- | ----------------------- | ------------------------------------------------------------------- |
+| Laura Molina     | Splash / Bienvenida    | `SplashActivity.java`   | `activity_splash.xml`   | Pantalla inicial y validación de sesión.                            |
+| Soledad Scarlata      | Login                  | `LoginActivity.java`    | `activity_login.xml`    | Autenticación del usuario mediante la API.                          |
+| Juan Alonso    | Registro               | `RegisterActivity.java` | `activity_register.xml` | Registro de nuevos usuarios mediante la API.                        |
+| Yohana Grosso     | Catálogo / Inicio      | `HomeActivity.java`     | `activity_home.xml`     | Visualización del catálogo de productos.                            |
+| Griselda Aguirre       | Detalle del producto   | `DetailActivity.java`   | `activity_detail.xml`   | Visualización de la información completa del producto seleccionado. |
+| Andrés Raffaelli   | Perfil / Configuración | `ProfileActivity.java`  | `activity_profile.xml`  | Visualización de los datos del usuario y cierre de sesión.          |
+
+
+
+
+## Funcionalidades Principales
+
+
+La aplicación móvil permitirá:
+* Registrarse.
+* Iniciar sesión.
+* Consultar el catálogo de productos.
+* Visualizar el detalle de un producto.
+* Consultar la información del usuario.
+* Cerrar sesión.
+* Comunicarse con el backend mediante la API REST.
+  #
+
+
 
 
 ## Requerimientos Funcionales
