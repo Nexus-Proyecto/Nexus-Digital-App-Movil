@@ -18,8 +18,8 @@ Aplicación móvil nativa de Nexus Digital, desarrollada para dispositivos Andro
 
 
 
-- **Griselda Leonor Aguirre** — Product Owner / Developer
-- **Juan Ignacio Alonso** — Scrum Master / Developer
+- **Griselda Leonor Aguirre** — Scrum Master / Developer
+- **Juan Ignacio Alonso** — Product Owner / Developer
 - **Yohana Eugenia Grosso** — Developer
 - **Laura Molina** — Developer
 - **Augusto Andrés Raffaeli** — Developer
