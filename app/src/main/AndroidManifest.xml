@@ -12,40 +12,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NexusDigital"
         tools:targetApi="31">
-        <activity
-            android:name=".CartActivity"
-            android:exported="false" />
-        <!-- SplashActivity es la pantalla inicial de la app -->
+
+        <!-- SplashActivity DEBE SER LA ÚNICA PANTALLA DE INICIO -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
+
+        <!-- MainActivity NO DEBE TENER intent-filter -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ContactoActivity"
-            android:exported="false" />
+
+        <!-- Resto de las pantallas -->
+        <activity android:name=".HomeActivity" android:exported="true" />
+        <activity android:name=".LoginActivity" android:exported="true" />
+        <activity android:name=".RegisterActivity" android:exported="true" />
+        <activity android:name=".DetailActivity" android:exported="true" />
+        <activity android:name=".CartActivity" android:exported="true" />
+        <activity android:name=".ProfileActivity" android:exported="true" />
+        <activity android:name=".ContactoActivity" android:exported="true" />
+
     </application>
 
 </manifest>
