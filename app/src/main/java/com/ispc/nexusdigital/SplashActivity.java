@@ -25,18 +25,20 @@ public class SplashActivity extends AppCompatActivity {
 
         Button btnIngresar = findViewById(R.id.btnIngresar);
 
-        // Si el usuario hace clic en el botón de ingreso, se cancela el temporizador y verificamos
-        btnIngresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (handler != null && runnable != null) {
-                    handler.removeCallbacks(runnable);
+        // Si el usuario hace clic en el botón "Ingresar", cancelamos el temporizador y verificamos
+        if (btnIngresar != null) {
+            btnIngresar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (handler != null && runnable != null) {
+                        handler.removeCallbacks(runnable);
+                    }
+                    verificarSesion();
                 }
-                verificarSesion();
-            }
-        });
+            });
+        }
 
-        // Espera 2 segundos de pantalla de carga y verifica automáticamente el token
+        // Espera 2 segundos y verifica automáticamente la sesión
         handler = new Handler(Looper.getMainLooper());
         runnable = new Runnable() {
             @Override
@@ -48,7 +50,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     /**
-     * Valida si existe un token JWT en SharedPreferences
+     * Valida si existe un token JWT en SharedPreferences para redirigir a Home o Login
      */
     private void verificarSesion() {
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -56,22 +58,20 @@ public class SplashActivity extends AppCompatActivity {
 
         Intent intent;
         if (token != null && !token.trim().isEmpty()) {
-            // Token JWT -> Sesión activa -> se dirige al Home
-            intent = new Intent(SplashActivity.this, MainActivity.class);
+            // ✅ Con sesión activa -> Dirige al Catálogo / Home
+            intent = new Intent(SplashActivity.this, HomeActivity.class);
         } else {
-            // Sin token
-            // Se envía a MainActivity por ahora
-            intent = new Intent(SplashActivity.this, MainActivity.class);
+            // ✅ Sin sesión -> Dirige a Iniciar Sesión
+            intent = new Intent(SplashActivity.this, LoginActivity.class);
         }
 
         startActivity(intent);
-        finish(); // Cierra el Splash para que no vuelva al presionar atrás
+        finish(); // Cierra SplashActivity
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Evita fugas de memoria si la activity se destruye antes de que corra el temporizador
         if (handler != null && runnable != null) {
             handler.removeCallbacks(runnable);
         }
