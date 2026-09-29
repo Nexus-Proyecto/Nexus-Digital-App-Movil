@@ -1,55 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    android:gravity="center"
-    android:background="#FFFFFF">
+    android:gravity="center_horizontal"
+    tools:context=".ProfileActivity">
 
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Perfil de Usuario"
-        android:textSize="26sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#000000"
         android:layout_marginBottom="32dp" />
 
+    <ImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@android:drawable/ic_menu_myplaces"
+        android:contentDescription="Foto de perfil"
+        android:layout_marginBottom="24dp" />
+
     <TextView
-        android:id="@+id/tvNombreUsuario"
+        android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Augusto Andrés Raffaeli"
-        android:textSize="20sp"
+        android:text="Cargando usuario..."
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="#333333"
         android:layout_marginBottom="8dp" />
 
     <TextView
-        android:id="@+id/tvEmailUsuario"
+        android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="andres@ejemplo.com"
+        android:text="Cargando email..."
         android:textSize="16sp"
         android:textColor="#666666"
-        android:layout_marginBottom="48dp" />
+        android:layout_marginBottom="40dp" />
 
     <Button
-        android:id="@+id/btnCerrarSesion"
+        android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cerrar Sesión"
         android:backgroundTint="#D32F2F"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="16dp" />
-
-    <Button
-        android:id="@+id/btnVolverInicio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Volver al Inicio"
-        android:backgroundTint="#673AB7"
-        android:textColor="#FFFFFF" />
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

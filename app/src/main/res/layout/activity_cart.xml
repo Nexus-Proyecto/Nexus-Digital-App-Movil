@@ -3,103 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#FFFFFF">
+    android:padding="16dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvTituloCarrito"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mi carrito"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginBottom="24dp" />
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
 
-    <!-- Ítem del Carrito -->
-    <LinearLayout
-        android:id="@+id/layoutCartItem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp"
-        android:background="#F5F5F5"
-        android:layout_marginBottom="16dp">
-
-        <TextView
-            android:id="@+id/tvItemNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Notebook Lenovo"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#333333" />
-
-        <TextView
-            android:id="@+id/tvItemPrecio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$ 350000.00"
-            android:textSize="16sp"
-            android:textColor="#666666"
-            android:layout_marginTop="4dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="8dp">
-
-            <TextView
-                android:id="@+id/tvCantidad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:paddingEnd="16dp" />
-
-            <Button
-                android:id="@+id/btnEliminar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Eliminar"
-                android:backgroundTint="#673AB7"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCarrito"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
     <TextView
         android:id="@+id/tvTotal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="Total: $ 350000.00"
+        android:text="Total: $ 0.00"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginBottom="16dp" />
+        android:gravity="end"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp" />
 
     <Button
-        android:id="@+id/btnVolver"
+        android:id="@+id/btnComprar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Volver a productos"
-        android:backgroundTint="#673AB7"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="8dp" />
-
-    <Button
-        android:id="@+id/btnConfirmarCompra"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Confirmar compra"
-        android:backgroundTint="#673AB7"
-        android:textColor="#FFFFFF" />
+        android:text="Confirmar compra" />
 
 </LinearLayout>

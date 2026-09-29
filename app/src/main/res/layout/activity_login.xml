@@ -1,55 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="24dp"
-    android:gravity="center"
-    android:background="#FFFFFF">
+    tools:context=".LoginActivity">
 
     <TextView
+        android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Iniciar sesión"
-        android:textSize="28sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginBottom="32dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="64dp" />
 
     <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
+        android:id="@+id/etUsuario"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Usuario"
         android:inputType="text"
-        android:minHeight="48dp"
-        android:layout_marginBottom="16dp" />
+        android:autofillHints="username"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp" />
 
     <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
+        android:id="@+id/etClave"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:layout_marginBottom="24dp" />
+        android:autofillHints="password"
+        app:layout_constraintTop_toBottomOf="@id/etUsuario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="#D32F2F"
+        android:visibility="gone"
+        android:text="Usuario o contraseña incorrectos"
+        app:layout_constraintTop_toBottomOf="@id/etClave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ingresar"
-        android:backgroundTint="#673AB7"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/tvError"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
-    <TextView
-        android:id="@+id/tvRegistrarse"
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿No tenés cuenta? Registrate acá"
-        android:textColor="#2196F3"
-        android:textSize="16sp"
-        android:padding="8dp" />
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

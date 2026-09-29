@@ -1,18 +1,24 @@
 package com.ispc.nexusdigital;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private TextView tvNombre, tvDescripcion, tvPrecio, tvStock, tvVendedor;
-    private Button btnAgregarCarrito, btnVolver;
+    private TextView tvNombre;
+    private TextView tvDescripcion;
+    private TextView tvPrecio;
+    private TextView tvStock;
+    private TextView tvVendedor;
+
+    private Button btnAgregarCarrito;
+    private Button btnVolver;
+
+    private Producto producto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,43 +30,29 @@ public class DetailActivity extends AppCompatActivity {
         tvPrecio = findViewById(R.id.tvPrecio);
         tvStock = findViewById(R.id.tvStock);
         tvVendedor = findViewById(R.id.tvVendedor);
+
         btnAgregarCarrito = findViewById(R.id.btnAgregarCarrito);
         btnVolver = findViewById(R.id.btnVolver);
 
-        // Obtener datos pasados desde el Intent (o valores por defecto del video)
-        String nombre = getIntent().getStringExtra("nombre");
-        if (nombre == null) nombre = "Notebook Lenovo";
-        double precio = getIntent().getDoubleExtra("precio", 350000.0);
+        producto = (Producto) getIntent().getSerializableExtra("producto");
 
-        tvNombre.setText(nombre);
-        tvPrecio.setText("$ " + precio);
+        if (producto != null) {
 
-        final String productoFinal = nombre;
-        final double precioFinal = precio;
+            tvNombre.setText(producto.getNombre());
+            tvDescripcion.setText(producto.getDescripcion());
+            tvPrecio.setText("$ " + String.format("%.2f", producto.getPrecio()));
+            tvStock.setText(String.valueOf(producto.getStock()));
+            tvVendedor.setText(producto.getNombreVendedor());
 
-        // Botón "Agregar al carrito"
-        btnAgregarCarrito.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Guardar ítem en SharedPreferences para mostrarlo en CartActivity
-                SharedPreferences cartPrefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = cartPrefs.edit();
-                editor.putString("item_nombre", productoFinal);
-                editor.putFloat("item_precio", (float) precioFinal);
-                editor.putInt("item_cantidad", 1);
-                editor.apply();
+            btnAgregarCarrito.setOnClickListener(v -> {
+
+                CarritoManager.getInstancia().agregarProducto(producto);
 
                 Intent intent = new Intent(DetailActivity.this, CartActivity.class);
                 startActivity(intent);
-            }
-        });
+            });
+        }
 
-        // Botón "Volver"
-        btnVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish(); // Regresa a HomeActivity
-            }
-        });
+        btnVolver.setOnClickListener(v -> finish());
     }
 }
