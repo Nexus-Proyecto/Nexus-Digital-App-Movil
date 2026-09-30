@@ -22,7 +22,8 @@
     <EditText
         android:id="@+id/etUsuario"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:minHeight="48dp"
         android:hint="Usuario"
         android:inputType="text"
         android:autofillHints="username"
@@ -34,7 +35,8 @@
     <EditText
         android:id="@+id/etClave"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:minHeight="48dp"
         android:hint="Contraseña"
         android:inputType="textPassword"
         android:autofillHints="password"
@@ -74,5 +76,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
+    <TextView
+        android:id="@+id/tvRegistrarse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:gravity="center"
+        android:text="¿No tenés una cuenta? Registrate"
+        android:textSize="16sp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@id/progressBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

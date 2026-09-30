@@ -33,6 +33,13 @@
         android:layout_marginBottom="12dp" />
 
     <Button
+        android:id="@+id/btnSeguirComprando"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seguir comprando"
+        android:layout_marginBottom="8dp" />
+
+    <Button
         android:id="@+id/btnComprar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
