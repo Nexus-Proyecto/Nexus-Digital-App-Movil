@@ -1,15 +1,20 @@
 package com.ispc.nexusdigital;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ispc.nexusdigital.api.SessionManager;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
 
     private static final int SPLASH_DURATION = 5000;
@@ -24,6 +29,10 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         sessionManager = new SessionManager(this);
+
+        ImageView imgLogo = findViewById(R.id.imgLogo);
+        Animation animacion = AnimationUtils.loadAnimation(this, R.anim.fade_in_scale);
+        imgLogo.startAnimation(animacion);
 
         Button btnIngresar = findViewById(R.id.btnIngresar);
 
