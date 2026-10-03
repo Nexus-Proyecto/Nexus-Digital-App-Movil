@@ -12,7 +12,7 @@ import com.ispc.nexusdigital.api.SessionManager;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final int SPLASH_DURATION = 2000;
+    private static final int SPLASH_DURATION = 5000;
 
     private Handler handler;
     private Runnable runnable;
