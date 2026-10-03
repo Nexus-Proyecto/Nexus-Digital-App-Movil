@@ -1,13 +1,14 @@
 package com.ispc.nexusdigital;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
 import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ispc.nexusdigital.api.SessionManager;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -17,11 +18,14 @@ public class SplashActivity extends AppCompatActivity {
 
     private Handler handler;
     private Runnable runnable;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        sessionManager = new SessionManager(this);
 
         Button btnIngresar = findViewById(R.id.btnIngresar);
 
@@ -33,21 +37,18 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 verificarSesion();
             }
+
+            verificarSesion();
         });
 
         handler = new Handler(Looper.getMainLooper());
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                verificarSesion();
-            }
-        };
+
+        runnable = this::verificarSesion;
+
         handler.postDelayed(runnable, SPLASH_DURATION);
     }
 
     private void verificarSesion() {
-        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        String token = preferences.getString(KEY_JWT_TOKEN, null);
 
         Intent intent;
         if (token != null && !token.trim().isEmpty()) {

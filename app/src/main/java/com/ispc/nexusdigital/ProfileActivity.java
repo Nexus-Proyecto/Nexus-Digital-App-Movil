@@ -1,8 +1,6 @@
 package com.ispc.nexusdigital;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,10 +8,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ispc.nexusdigital.api.SessionManager;
+
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView tvUsername, tvEmail;
     private Button btnLogout;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,25 +25,22 @@ public class ProfileActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         btnLogout = findViewById(R.id.btnLogout);
 
+        sessionManager = new SessionManager(this);
+
         cargarDatosUsuario();
 
         btnLogout.setOnClickListener(v -> cerrarSesion());
     }
 
     private void cargarDatosUsuario() {
-        SharedPreferences preferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-        String username = preferences.getString("username", "Augusto Andrés Raffaeli");
-        String email = preferences.getString("email", "andres@ejemplo.com");
-
-        tvUsername.setText(username);
-        tvEmail.setText(email);
+        if (sessionManager.estaLogueado()) {
+            tvUsername.setText("Usuario");
+            tvEmail.setText("Correo no disponible");
+        }
     }
 
     private void cerrarSesion() {
-        SharedPreferences preferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.clear();
-        editor.apply();
+        sessionManager.cerrarSesion();
 
         Toast.makeText(this, "Sesión cerrada correctamente", Toast.LENGTH_SHORT).show();
 
