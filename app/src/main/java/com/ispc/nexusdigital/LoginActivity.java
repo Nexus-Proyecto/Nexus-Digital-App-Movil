@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,9 +21,6 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    // Modo simulado: valida localmente sin llamar a Django, para probar la pantalla
-    // en el teléfono antes de tener el backend listo.
-    // Cuando Django esté disponible, cambiá esto a false.
     private static final boolean MODO_SIMULADO = true;
     private static final String USUARIO_PRUEBA = "admin";
     private static final String CLAVE_PRUEBA = "1234";
@@ -32,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etUsuario, etClave;
     private Button btnLogin;
     private ProgressBar progressBar;
-    private TextView tvError;
+    private TextView tvError, tvRegistrarse;
     private SessionManager sessionManager;
 
     @Override
@@ -45,15 +41,20 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         progressBar = findViewById(R.id.progressBar);
         tvError = findViewById(R.id.tvError);
+        tvRegistrarse = findViewById(R.id.tvRegistrarse);
         sessionManager = new SessionManager(this);
 
-        // Si ya hay una sesión guardada, saltar directo a la pantalla principal
         if (sessionManager.estaLogueado()) {
             irAPantallaPrincipal();
             return;
         }
 
         btnLogin.setOnClickListener(v -> intentarLogin());
+
+        tvRegistrarse.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void intentarLogin() {
@@ -75,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         LoginRequest request = new LoginRequest(usuario, clave);
+
         ApiClient.getApiService().login(request).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -85,7 +87,6 @@ public class LoginActivity extends AppCompatActivity {
                     sessionManager.guardarToken(token);
                     irAPantallaPrincipal();
                 } else {
-                    // 400/401 típicamente significa credenciales inválidas en DRF
                     mostrarError("Usuario o contraseña incorrectos");
                 }
             }
@@ -98,12 +99,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    // Simula la respuesta de la API para poder probar la pantalla sin backend.
-    // Usuario de prueba: admin / 1234
     private void loginSimulado(String usuario, String clave) {
-        // Delay corto para simular la espera de red real
         btnLogin.postDelayed(() -> {
             mostrarCargando(false);
+
             if (usuario.equals(USUARIO_PRUEBA) && clave.equals(CLAVE_PRUEBA)) {
                 sessionManager.guardarToken("token-simulado-123");
                 irAPantallaPrincipal();
@@ -124,8 +123,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void irAPantallaPrincipal() {
-        // Reemplazá MainActivity.class por la Activity a la que deba entrar el usuario logueado
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
     }
