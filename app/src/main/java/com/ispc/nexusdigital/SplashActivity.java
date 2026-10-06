@@ -1,18 +1,27 @@
 package com.ispc.nexusdigital;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ispc.nexusdigital.api.SessionManager;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
 
-    private static final int SPLASH_DURATION = 2000;
+    private static final String PREFS_NAME = "NexusPrefs";
+    private static final String KEY_JWT_TOKEN = "jwt_token";
+  
+    private static final int SPLASH_DURATION = 5000;
 
     private Handler handler;
     private Runnable runnable;
@@ -25,14 +34,20 @@ public class SplashActivity extends AppCompatActivity {
 
         sessionManager = new SessionManager(this);
 
+        ImageView imgLogo = findViewById(R.id.imgLogo);
+        Animation animacion = AnimationUtils.loadAnimation(this, R.anim.fade_in_scale);
+        imgLogo.startAnimation(animacion);
+
         Button btnIngresar = findViewById(R.id.btnIngresar);
 
-        btnIngresar.setOnClickListener(v -> {
-            if (handler != null && runnable != null) {
-                handler.removeCallbacks(runnable);
+        btnIngresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (handler != null && runnable != null) {
+                    handler.removeCallbacks(runnable);
+                }
+                verificarSesion();
             }
-
-            verificarSesion();
         });
 
         handler = new Handler(Looper.getMainLooper());
@@ -45,9 +60,10 @@ public class SplashActivity extends AppCompatActivity {
     private void verificarSesion() {
 
         Intent intent;
-
-        if (sessionManager.estaLogueado()) {
-            intent = new Intent(SplashActivity.this, HomeActivity.class);
+      String token = sessionManager.obtenerToken();
+      
+        if (token != null && !token.trim().isEmpty()) {
+            intent = new Intent(SplashActivity.this, MainActivity.class);
         } else {
             intent = new Intent(SplashActivity.this, LoginActivity.class);
         }
@@ -59,7 +75,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         if (handler != null && runnable != null) {
             handler.removeCallbacks(runnable);
         }
