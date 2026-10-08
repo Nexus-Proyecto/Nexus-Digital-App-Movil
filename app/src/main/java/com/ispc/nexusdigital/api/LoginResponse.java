@@ -1,11 +1,45 @@
 package com.ispc.nexusdigital.api;
 
-// Ajustá los nombres de estos campos según lo que devuelva realmente tu API de Django.
-// Ejemplo típico con Django REST Framework (TokenAuthentication): {"token": "abc123..."}
 public class LoginResponse {
-    private String token;
 
-    public String getToken() {
-        return token;
+    private int id_usuario;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private String rol;
+    private String access;
+    private String refresh;
+    private String mensaje;
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public String getAccess() {
+        return access;
+    }
+
+    public String getRefresh() {
+        return refresh;
+    }
+
+    public String getMensaje() {
+        return mensaje;
     }
 }
