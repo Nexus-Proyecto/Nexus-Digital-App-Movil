@@ -9,10 +9,10 @@ public interface ApiService {
 
     // Cambiá "api/login/" por la ruta real de tu API de Django
     @Headers("Content-Type: application/json")
-    @POST("api/login/")
+    @POST("api/auth/login/")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
     @Headers("Content-Type: application/json")
-    @POST("api/register/")
+    @POST("api/auth/register/")
     Call<Void> register(@Body RegisterRequest registerRequest);
 }

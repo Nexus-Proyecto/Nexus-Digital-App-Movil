@@ -5,10 +5,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    // Reemplazá esta URL por la de tu servidor Django.
-    // Si corrés Django localmente y probás desde el emulador de Android Studio,
-    // usá 10.0.2.2 en vez de 127.0.0.1 (el emulador lo redirige a tu PC).
-    private static final String BASE_URL = "http://10.0.2.2:8000/";
+    // Reemplazá TU_IP por la dirección IP local de la PC donde se ejecuta Django.
+// Ejemplo: http://19X.1XX.X.X2:8000/
+    private static final String BASE_URL = "http://TU_IP:8000/";
 
     private static Retrofit retrofit;
 
