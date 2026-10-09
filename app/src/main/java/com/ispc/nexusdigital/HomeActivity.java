@@ -2,6 +2,9 @@ package com.ispc.nexusdigital;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private SessionManager sessionManager;
+    private EditText etBuscar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        toggle.getDrawerArrowDrawable().setColor(ContextCompat.getColor(this, android.R.color.white));
 
         navigationView.setNavigationItemSelectedListener(item -> {
 
@@ -86,6 +91,20 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         rvProductos.setAdapter(adapter);
+
+        etBuscar = findViewById(R.id.etBuscar);
+        etBuscar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filtrarProductos(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
     }
 
     private void cerrarSesion() {
@@ -95,6 +114,22 @@ public class HomeActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+    }
+
+    private void filtrarProductos(String texto) {
+        String query = texto.trim().toLowerCase();
+        List<Producto> filtrados = new ArrayList<>();
+
+        for (Producto p : listaProductos) {
+            String nombre = p.getNombre() != null ? p.getNombre().toLowerCase() : "";
+            String descripcion = p.getDescripcion() != null ? p.getDescripcion().toLowerCase() : "";
+
+            if (nombre.contains(query) || descripcion.contains(query)) {
+                filtrados.add(p);
+            }
+        }
+
+        adapter.actualizarLista(filtrados);
     }
 
     private List<Producto> obtenerDatosDeEjemplo() {
