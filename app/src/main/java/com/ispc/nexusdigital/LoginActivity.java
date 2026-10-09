@@ -21,7 +21,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final boolean MODO_SIMULADO = true;
+    private static final boolean MODO_SIMULADO = false;
     private static final String EMAIL_PRUEBA = "admin@nexus.com";
     private static final String CLAVE_PRUEBA = "1234";
 
@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 mostrarCargando(false);
 
                 if (response.isSuccessful() && response.body() != null) {
-                    String token = response.body().getToken();
+                    String token = response.body().getAccess();
                     sessionManager.guardarToken(token);
                     irAPantallaPrincipal();
                 } else {
