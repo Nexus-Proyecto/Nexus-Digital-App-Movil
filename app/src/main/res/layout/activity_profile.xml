@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_light"
     android:orientation="vertical"
     android:padding="24dp"
     android:gravity="center_horizontal"
@@ -13,7 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Perfil de Usuario"
-        android:textSize="24sp"
+        android:textAppearance="@style/TextAppearance.NexusDigital.Headline"
+        android:textColor="@color/purple_primary"
         android:textStyle="bold"
         android:layout_marginBottom="32dp" />
 
@@ -45,10 +47,9 @@
 
     <Button
         android:id="@+id/btnLogout"
+        style="@style/Widget.NexusDigital.Button.Secondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cerrar Sesión"
-        android:backgroundTint="#D32F2F"
-        android:textColor="@android:color/white" />
+        android:text="Cerrar Sesión" />
 
 </LinearLayout>
