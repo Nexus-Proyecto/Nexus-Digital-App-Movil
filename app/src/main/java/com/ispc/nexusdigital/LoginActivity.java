@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     String token = response.body().getAccess();
                     sessionManager.guardarToken(token);
+                    sessionManager.guardarIdUsuario(response.body().getId_usuario());
                     irAPantallaPrincipal();
                 } else {
                     mostrarError("Email o contraseña incorrectos");
