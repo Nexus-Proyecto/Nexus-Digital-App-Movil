@@ -7,6 +7,7 @@ public class SessionManager {
 
     private static final String PREF_NAME = "nexus_session";
     private static final String KEY_TOKEN = "token";
+    private static final String KEY_ID_USUARIO = "id_usuario";
 
     private final SharedPreferences prefs;
 
@@ -22,11 +23,19 @@ public class SessionManager {
         return prefs.getString(KEY_TOKEN, null);
     }
 
+    public void guardarIdUsuario(int idUsuario) {
+        prefs.edit().putInt(KEY_ID_USUARIO, idUsuario).apply();
+    }
+
+    public int obtenerIdUsuario() {
+        return prefs.getInt(KEY_ID_USUARIO, -1);
+    }
+
     public boolean estaLogueado() {
         return obtenerToken() != null;
     }
 
     public void cerrarSesion() {
-        prefs.edit().remove(KEY_TOKEN).apply();
+        prefs.edit().remove(KEY_TOKEN).remove(KEY_ID_USUARIO).apply();
     }
 }
