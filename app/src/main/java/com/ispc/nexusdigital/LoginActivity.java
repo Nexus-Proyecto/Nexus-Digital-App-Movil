@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private TextView tvError, tvRegistrarse;
     private SessionManager sessionManager;
+    private LoginResultHandler loginResultHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         tvError = findViewById(R.id.tvError);
         tvRegistrarse = findViewById(R.id.tvRegistrarse);
         sessionManager = new SessionManager(this);
+        loginResultHandler = new LoginResultHandler(sessionManager);
 
         if (sessionManager.estaLogueado()) {
             irAPantallaPrincipal();
@@ -82,20 +84,18 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 mostrarCargando(false);
 
-                if (response.isSuccessful() && response.body() != null) {
-                    String token = response.body().getAccess();
-                    sessionManager.guardarToken(token);
-                    sessionManager.guardarIdUsuario(response.body().getId_usuario());
+                String error = loginResultHandler.procesarRespuesta(response);
+                if (error == null) {
                     irAPantallaPrincipal();
                 } else {
-                    mostrarError("Email o contraseña incorrectos");
+                    mostrarError(error);
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 mostrarCargando(false);
-                mostrarError("No se pudo conectar con el servidor");
+                mostrarError(loginResultHandler.procesarFallo());
             }
         });
     }
