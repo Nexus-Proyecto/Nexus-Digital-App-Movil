@@ -35,4 +35,17 @@ public class ExampleUnitTest {
     public void testCampoConContenido_retornaVerdadero() {
         assertTrue("Un texto con caracteres debe ser válido", esCampoValido("Juan"));
     }
+    //** Validador de formato de correo electrónico
+    // * Test Case ID: AUT-UNIT-04*/
+    public boolean esEmailValido(String email) {
+        return email != null && email.contains("@") && email.contains(".");
+    }
+
+    @Test
+    public void testEmailMalFormado_retornaFalso() {
+        // Prueba negativa: verifica que el sistema rechace correos mal formados
+        assertFalse("Un correo sin '@' debe ser considerado mal formado", esEmailValido("correosinarroba.com"));
+        assertFalse("Un correo incompleto debe ser rechazado", esEmailValido("usuario@"));
+        assertFalse("Un valor nulo debe ser rechazado", esEmailValido(null));
+    }
 }
