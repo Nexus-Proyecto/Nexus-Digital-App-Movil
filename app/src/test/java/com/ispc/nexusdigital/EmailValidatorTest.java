@@ -3,7 +3,7 @@ package com.ispc.nexusdigital;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+import org.junit.Test
 
 /**
  * Pruebas unitarias con JUnit para la validación de correos electrónicos.

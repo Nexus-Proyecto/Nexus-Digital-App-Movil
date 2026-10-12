@@ -12,11 +12,11 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class LoginFlowTest {
 
-    // Chequeo de accesibilidad desactivado temporalmente
-    // @BeforeClass
-    // public static void enableAccessibilityChecks() {
-    //     AccessibilityChecks.enable();
-    // }
+
+    @BeforeClass
+    public static void enableAccessibilityChecks() {
+       AccessibilityChecks.enable();
+     }
 
     @Rule
     public ActivityScenarioRule<LoginActivity> activityRule =
@@ -35,4 +35,14 @@ public class LoginFlowTest {
                 "Completá email y contraseña"
         );
     }
+    @Test
+    public void UI_ACC_LOGIN_01() {
+        LoginScreen login = new LoginScreen();
+
+        // Ejecutamos la interacción en la pantalla para que Espresso audite la accesibilidad automáticamente
+        login.ingresar();
+    }
+
+
+
 }
