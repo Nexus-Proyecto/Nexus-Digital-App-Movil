@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnRegister;
     private ProgressBar progressBar;
     private TextView tvError, tvYaTieneCuenta;
+    private RadioButton rbVendedor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
+        rbVendedor = findViewById(R.id.rbVendedor);
 
         btnRegister = findViewById(R.id.btnRegister);
         progressBar = findViewById(R.id.progressBar);
@@ -80,6 +84,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         setLoading(true);
 
+        String rol = rbVendedor.isChecked() ? "vendedor" : "comprador";
+
 
         RegisterRequest request = new RegisterRequest(
                 firstName,
@@ -87,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                 email,
                 password,
                 confirmPassword,
-                "comprador"
+                rol
         );
 
         ApiClient.getApiService().register(request).enqueue(new Callback<Void>() {
