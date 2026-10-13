@@ -78,6 +78,16 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        if (!password.matches(".*[A-Za-z].*") || !password.matches(".*\\d.*")) {
+            mostrarError("La contraseña debe ser alfanumérica (letras y números)");
+            return;
+        }
+
+        if (password.matches("[A-Za-z0-9]*")) {
+            mostrarError("La contraseña debe incluir al menos un carácter especial");
+            return;
+        }
+
         setLoading(true);
 
 
