@@ -35,6 +35,7 @@ public class ExampleUnitTest {
     public void testCampoConContenido_retornaVerdadero() {
         assertTrue("Un texto con caracteres debe ser válido", esCampoValido("Juan"));
     }
+
     //** Validador de formato de correo electrónico
     // * Test Case ID: AUT-UNIT-04*/
     public boolean esEmailValido(String email) {
@@ -47,5 +48,25 @@ public class ExampleUnitTest {
         assertFalse("Un correo sin '@' debe ser considerado mal formado", esEmailValido("correosinarroba.com"));
         assertFalse("Un correo incompleto debe ser rechazado", esEmailValido("usuario@"));
         assertFalse("Un valor nulo debe ser rechazado", esEmailValido(null));
+    }
+
+    /**
+     * Validador de longitud mínima (por ejemplo, contraseña o texto de al menos 6 caracteres).
+     * Test Case ID: AUT-UNIT-03
+     */
+    public boolean esLongitudValida(String texto, int longitudMinima) {
+        return texto != null && texto.trim().length() >= longitudMinima;
+    }
+
+    @Test
+    public void testLongitudInferiorAlLimite_retornaFalso() {
+        // AUT-UNIT-03: Caso Negativo / Límite inferior inválido (5 caracteres cuando el mínimo es 6)
+        assertFalse("Debe ser inválido si tiene menos del mínimo", esLongitudValida("12345", 6));
+    }
+
+    @Test
+    public void testLongitudExactaAlLimite_retornaVerdadero() {
+        // Caso Límite exacto válido (justo 6 caracteres)
+        assertTrue("Debe ser válido si cumple exactamente la longitud mínima", esLongitudValida("123456", 6));
     }
 }
