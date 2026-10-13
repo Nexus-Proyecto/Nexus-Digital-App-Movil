@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.ispc.nexusdigital.api.ApiClient;
 import com.ispc.nexusdigital.api.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -81,7 +86,7 @@ public class HomeActivity extends AppCompatActivity {
         rvProductos = findViewById(R.id.rvProductos);
         rvProductos.setLayoutManager(new LinearLayoutManager(this));
 
-        listaProductos = obtenerDatosDeEjemplo();
+        listaProductos = new ArrayList<>();
 
         adapter = new ProductoAdapter(listaProductos, producto -> {
             Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
@@ -104,6 +109,34 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) { }
+        });
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cargarProductos();
+    }
+
+    private void cargarProductos() {
+        ApiClient.getApiService().getProductos().enqueue(new Callback<List<Producto>>() {
+            @Override
+            public void onResponse(Call<List<Producto>> call, Response<List<Producto>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    listaProductos = response.body();
+                    adapter.actualizarLista(listaProductos);
+                } else {
+                    Toast.makeText(HomeActivity.this,
+                            "No se pudieron cargar los productos. Código: " + response.code(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Producto>> call, Throwable t) {
+                Toast.makeText(HomeActivity.this,
+                        "Error de conexión: " + t.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
