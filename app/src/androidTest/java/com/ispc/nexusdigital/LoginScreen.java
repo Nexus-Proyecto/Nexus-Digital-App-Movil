@@ -1,8 +1,6 @@
 
 package com.ispc.nexusdigital;
 
-import androidx.test.espresso.ViewInteraction;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;

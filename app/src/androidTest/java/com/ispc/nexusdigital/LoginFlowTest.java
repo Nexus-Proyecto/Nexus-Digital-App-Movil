@@ -12,11 +12,10 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class LoginFlowTest {
 
-    // Chequeo de accesibilidad desactivado temporalmente
-    // @BeforeClass
-    // public static void enableAccessibilityChecks() {
-    //     AccessibilityChecks.enable();
-    // }
+    @BeforeClass
+    public static void enableAccessibilityChecks() {
+        AccessibilityChecks.enable();
+    }
 
     @Rule
     public ActivityScenarioRule<LoginActivity> activityRule =
