@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.view.View;
+import com.ispc.nexusdigital.api.RolUsuario;
 import com.ispc.nexusdigital.api.ApiClient;
 import com.ispc.nexusdigital.api.SessionManager;
 
@@ -34,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private SessionManager sessionManager;
     private EditText etBuscar;
+    private FloatingActionButton fabNuevoProducto;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,10 +115,15 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) { }
         });
+        fabNuevoProducto = findViewById(R.id.fabNuevoProducto);
+        fabNuevoProducto.setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, ProductoFormActivity.class)));
     }
     @Override
     protected void onResume() {
         super.onResume();
+        fabNuevoProducto.setVisibility(
+                RolUsuario.puedePublicar(this) ? View.VISIBLE : View.GONE);
         cargarProductos();
     }
 
