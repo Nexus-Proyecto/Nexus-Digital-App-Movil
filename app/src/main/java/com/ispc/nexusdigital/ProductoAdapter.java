@@ -3,6 +3,7 @@ package com.ispc.nexusdigital;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,12 +17,18 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
         void onProductoClick(Producto producto);
     }
 
-    private final List<Producto> listaProductos;
+    private List<Producto> listaProductos;
     private final OnProductoClickListener listener;
 
     public ProductoAdapter(List<Producto> listaProductos, OnProductoClickListener listener) {
         this.listaProductos = listaProductos;
         this.listener = listener;
+    }
+
+    // Reemplaza la lista mostrada (lo usa el buscador)
+    public void actualizarLista(List<Producto> nuevaLista) {
+        this.listaProductos = nuevaLista;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -49,10 +56,12 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
     }
 
     static class ProductoViewHolder extends RecyclerView.ViewHolder {
+        ImageView ivProducto;
         TextView tvNombre, tvPrecio, tvStock, tvVendedor;
 
         public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
+            ivProducto = itemView.findViewById(R.id.ivProducto);
             tvNombre = itemView.findViewById(R.id.tvNombre);
             tvPrecio = itemView.findViewById(R.id.tvPrecio);
             tvStock = itemView.findViewById(R.id.tvStock);

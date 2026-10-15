@@ -1,29 +1,41 @@
 package com.ispc.nexusdigital.api;
 
 public class RegisterRequest {
-    private String username;
+
+    private String nombre;
+    private String apellido;
     private String email;
     private String password;
-    private String first_name;
-    private String last_name;
+    private String password_confirm;
+    private String rol;
 
     public RegisterRequest() {
     }
 
-    public RegisterRequest(String username, String email, String password, String first_name, String last_name) {
-        this.username = username;
+    public RegisterRequest(String nombre, String apellido, String email,
+                           String password, String password_confirm, String rol) {
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.email = email;
         this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.password_confirm = password_confirm;
+        this.rol = rol;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getEmail() {
@@ -42,19 +54,19 @@ public class RegisterRequest {
         this.password = password;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getPassword_confirm() {
+        return password_confirm;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setPassword_confirm(String password_confirm) {
+        this.password_confirm = password_confirm;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getRol() {
+        return rol;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

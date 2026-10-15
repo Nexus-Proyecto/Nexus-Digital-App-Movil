@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,28 +21,32 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText etUsername, etFirstName, etLastName, etEmail, etPassword, etConfirmPassword;
+    private EditText etFirstName, etLastName, etEmail, etPassword, etConfirmPassword;
     private Button btnRegister;
     private ProgressBar progressBar;
     private TextView tvError, tvYaTieneCuenta;
+    private RadioButton rbVendedor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etUsername = findViewById(R.id.etUsername);
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
+        rbVendedor = findViewById(R.id.rbVendedor);
+
         btnRegister = findViewById(R.id.btnRegister);
         progressBar = findViewById(R.id.progressBar);
         tvError = findViewById(R.id.tvError);
         tvYaTieneCuenta = findViewById(R.id.tvYaTieneCuenta);
 
         btnRegister.setOnClickListener(v -> registrarUsuario());
+
         tvYaTieneCuenta.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
@@ -50,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registrarUsuario() {
-        String username = etUsername.getText().toString().trim();
+
         String firstName = etFirstName.getText().toString().trim();
         String lastName = etLastName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
@@ -59,7 +64,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         tvError.setVisibility(View.GONE);
 
-        if (username.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()
+                || password.isEmpty() || confirmPassword.isEmpty()) {
+
             mostrarError("Completá todos los campos");
             return;
         }
@@ -69,44 +76,89 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if (password.length() < 6) {
-            mostrarError("La contraseña debe tener al menos 6 caracteres");
+
+        if (password.length() < 8) {
+            mostrarError("La contraseña debe tener al menos 8 caracteres");
+            return;
+        }
+
+        if (!password.matches(".*[A-Za-z].*") || !password.matches(".*\\d.*")) {
+            mostrarError("La contraseña debe ser alfanumérica (letras y números)");
+            return;
+        }
+
+        if (password.matches("[A-Za-z0-9]*")) {
+            mostrarError("La contraseña debe incluir al menos un carácter especial");
             return;
         }
 
         setLoading(true);
 
-        RegisterRequest request = new RegisterRequest(username, email, password, firstName, lastName);
+        String rol = rbVendedor.isChecked() ? "vendedor" : "comprador";
+
+
+        RegisterRequest request = new RegisterRequest(
+                firstName,
+                lastName,
+                email,
+                password,
+                confirmPassword,
+                rol
+        );
 
         ApiClient.getApiService().register(request).enqueue(new Callback<Void>() {
+
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+
                 setLoading(false);
 
                 if (response.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+
+                    Toast.makeText(
+                            RegisterActivity.this,
+                            "Usuario registrado correctamente",
+                            Toast.LENGTH_SHORT
+                    ).show();
+
+                    Intent intent = new Intent(
+                            RegisterActivity.this,
+                            LoginActivity.class
+                    );
+
                     startActivity(intent);
                     finish();
+
                 } else {
-                    mostrarError("No se pudo registrar el usuario");
+
+                    mostrarError(
+                            "No se pudo registrar el usuario. Código: "
+                                    + response.code()
+                    );
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+
                 setLoading(false);
-                mostrarError("No se pudo conectar con el servidor");
+
+                mostrarError("Error: " + t.getMessage());
             }
         });
     }
 
     private void setLoading(boolean cargando) {
-        progressBar.setVisibility(cargando ? View.VISIBLE : View.GONE);
+
+        progressBar.setVisibility(
+                cargando ? View.VISIBLE : View.GONE
+        );
+
         btnRegister.setEnabled(!cargando);
     }
 
     private void mostrarError(String mensaje) {
+
         tvError.setText(mensaje);
         tvError.setVisibility(View.VISIBLE);
     }

@@ -34,8 +34,28 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void cargarDatosUsuario() {
         if (sessionManager.estaLogueado()) {
-            tvUsername.setText("Usuario");
-            tvEmail.setText("Correo no disponible");
+
+            String nombre = sessionManager.obtenerNombre();
+            String apellido = sessionManager.obtenerApellido();
+            String email = sessionManager.obtenerEmail();
+            String rol = sessionManager.obtenerRol();
+
+            String nombreCompleto = (nombre + " " + apellido).trim();
+
+            if (nombreCompleto.isEmpty()) {
+                nombreCompleto = "Usuario";
+            }
+
+            tvUsername.setText(nombreCompleto);
+
+            if (email != null && !email.isEmpty()) {
+                tvEmail.setText(email);
+            } else {
+                tvEmail.setText("Correo no disponible");
+            }
+
+            // Si tu diseño tiene un TextView para el rol,
+            // después podemos mostrar "Comprador" o "Vendedor".
         }
     }
 

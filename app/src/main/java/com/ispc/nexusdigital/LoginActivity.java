@@ -21,28 +21,30 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final boolean MODO_SIMULADO = true;
-    private static final String USUARIO_PRUEBA = "admin";
+    private static final boolean MODO_SIMULADO = false;
+    private static final String EMAIL_PRUEBA = "admin@nexus.com";
     private static final String CLAVE_PRUEBA = "1234";
 
-    private EditText etUsuario, etClave;
+    private EditText etEmail, etClave;
     private Button btnLogin;
     private ProgressBar progressBar;
     private TextView tvError, tvRegistrarse;
     private SessionManager sessionManager;
+    private LoginResultHandler loginResultHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etUsuario = findViewById(R.id.etUsuario);
+        etEmail = findViewById(R.id.etEmail);
         etClave = findViewById(R.id.etClave);
         btnLogin = findViewById(R.id.btnLogin);
         progressBar = findViewById(R.id.progressBar);
         tvError = findViewById(R.id.tvError);
         tvRegistrarse = findViewById(R.id.tvRegistrarse);
         sessionManager = new SessionManager(this);
+        loginResultHandler = new LoginResultHandler(sessionManager);
 
         if (sessionManager.estaLogueado()) {
             irAPantallaPrincipal();
@@ -58,56 +60,55 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void intentarLogin() {
-        String usuario = etUsuario.getText().toString().trim();
+        String email = etEmail.getText().toString().trim();
         String clave = etClave.getText().toString().trim();
 
         tvError.setVisibility(View.GONE);
 
-        if (usuario.isEmpty() || clave.isEmpty()) {
-            mostrarError("Completá usuario y contraseña");
+        if (email.isEmpty() || clave.isEmpty()) {
+            mostrarError("Completá email y contraseña");
             return;
         }
 
         mostrarCargando(true);
 
         if (MODO_SIMULADO) {
-            loginSimulado(usuario, clave);
+            loginSimulado(email, clave);
             return;
         }
 
-        LoginRequest request = new LoginRequest(usuario, clave);
+        LoginRequest request = new LoginRequest(email, clave);
 
         ApiClient.getApiService().login(request).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 mostrarCargando(false);
 
-                if (response.isSuccessful() && response.body() != null) {
-                    String token = response.body().getToken();
-                    sessionManager.guardarToken(token);
+                String error = loginResultHandler.procesarRespuesta(response);
+                if (error == null) {
                     irAPantallaPrincipal();
                 } else {
-                    mostrarError("Usuario o contraseña incorrectos");
+                    mostrarError(error);
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 mostrarCargando(false);
-                mostrarError("No se pudo conectar con el servidor");
+                mostrarError(loginResultHandler.procesarFallo());
             }
         });
     }
 
-    private void loginSimulado(String usuario, String clave) {
+    private void loginSimulado(String email, String clave) {
         btnLogin.postDelayed(() -> {
             mostrarCargando(false);
 
-            if (usuario.equals(USUARIO_PRUEBA) && clave.equals(CLAVE_PRUEBA)) {
+            if (email.equals(EMAIL_PRUEBA) && clave.equals(CLAVE_PRUEBA)) {
                 sessionManager.guardarToken("token-simulado-123");
                 irAPantallaPrincipal();
             } else {
-                mostrarError("Usuario o contraseña incorrectos");
+                mostrarError("Email o contraseña incorrectos");
             }
         }, 800);
     }

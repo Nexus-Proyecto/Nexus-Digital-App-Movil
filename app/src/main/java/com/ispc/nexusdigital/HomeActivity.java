@@ -2,19 +2,31 @@ package com.ispc.nexusdigital;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.view.View;
+import com.ispc.nexusdigital.api.RolUsuario;
+import com.ispc.nexusdigital.api.ApiClient;
 import com.ispc.nexusdigital.api.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -24,11 +36,15 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private SessionManager sessionManager;
+    private EditText etBuscar;
+    private FloatingActionButton fabNuevoProducto;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ApiClient.init(getApplicationContext());
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
@@ -47,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        toggle.getDrawerArrowDrawable().setColor(ContextCompat.getColor(this, android.R.color.white));
 
         navigationView.setNavigationItemSelectedListener(item -> {
 
@@ -75,7 +92,7 @@ public class HomeActivity extends AppCompatActivity {
         rvProductos = findViewById(R.id.rvProductos);
         rvProductos.setLayoutManager(new LinearLayoutManager(this));
 
-        listaProductos = obtenerDatosDeEjemplo();
+        listaProductos = new ArrayList<>();
 
         adapter = new ProductoAdapter(listaProductos, producto -> {
             Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
@@ -85,6 +102,53 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         rvProductos.setAdapter(adapter);
+
+        etBuscar = findViewById(R.id.etBuscar);
+        etBuscar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filtrarProductos(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+        fabNuevoProducto = findViewById(R.id.fabNuevoProducto);
+        fabNuevoProducto.setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, ProductoFormActivity.class)));
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fabNuevoProducto.setVisibility(
+                RolUsuario.puedePublicar(this) ? View.VISIBLE : View.GONE);
+        cargarProductos();
+    }
+
+    private void cargarProductos() {
+        ApiClient.getApiService().getProductos().enqueue(new Callback<List<Producto>>() {
+            @Override
+            public void onResponse(Call<List<Producto>> call, Response<List<Producto>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    listaProductos = response.body();
+                    adapter.actualizarLista(listaProductos);
+                } else {
+                    Toast.makeText(HomeActivity.this,
+                            "No se pudieron cargar los productos. Código: " + response.code(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Producto>> call, Throwable t) {
+                Toast.makeText(HomeActivity.this,
+                        "Error de conexión: " + t.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void cerrarSesion() {
@@ -94,6 +158,22 @@ public class HomeActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+    }
+
+    private void filtrarProductos(String texto) {
+        String query = texto.trim().toLowerCase();
+        List<Producto> filtrados = new ArrayList<>();
+
+        for (Producto p : listaProductos) {
+            String nombre = p.getNombre() != null ? p.getNombre().toLowerCase() : "";
+            String descripcion = p.getDescripcion() != null ? p.getDescripcion().toLowerCase() : "";
+
+            if (nombre.contains(query) || descripcion.contains(query)) {
+                filtrados.add(p);
+            }
+        }
+
+        adapter.actualizarLista(filtrados);
     }
 
     private List<Producto> obtenerDatosDeEjemplo() {

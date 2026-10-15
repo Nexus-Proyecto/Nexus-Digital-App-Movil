@@ -32,6 +32,18 @@
             android:id="@+id/btnMenos"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:text="-" />
 
         <TextView
@@ -46,6 +58,18 @@
             android:id="@+id/btnMas"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:text="+" />
 
         <Button
