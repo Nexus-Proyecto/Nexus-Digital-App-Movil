@@ -5,153 +5,256 @@
 
 # Nexus Digital - Aplicación Móvil
 
+Aplicación móvil nativa para Android desarrollada como extensión de **Nexus Digital**, una plataforma de comercio electrónico orientada a compradores y vendedores.
 
-
-
-Aplicación móvil nativa de Nexus Digital, desarrollada para dispositivos Android como extensión de la plataforma de compra y venta de productos a nivel local en la provincia de Córdoba.
-
-
-
+Proyecto realizado en la **Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales – ISPC**.
 
 ## Integrantes
 
+| Integrante                  | Rol                       |
+| --------------------------- | ------------------------- |
+| **Griselda Leonor Aguirre** | Scrum Master / Dev / Tester / Analista de Ciberseguridad  |
+| **Juan Ignacio Alonso**     | Product Owner /Dev / Tester / Analista de Ciberseguridad |
+| **Yohana Eugenia Grosso**   | Dev / Tester / Analista de Ciberseguridad                 |
+| **Laura Molina**            | Dev / Tester / Analista de Ciberseguridad                 |
+| **Augusto Andrés Raffaeli** | Dev / Tester / Analista de Ciberseguridad                  |
+| **María Soledad Scarlata**  | Dev / Tester / Analista de Ciberseguridad                 |
 
+## Descripción
 
+Nexus Digital es una plataforma de compra y venta de productos a nivel local en la provincia de Córdoba.
 
-- **Griselda Leonor Aguirre** — Scrum Master / Developer
-- **Juan Ignacio Alonso** — Product Owner / Developer
-- **Yohana Eugenia Grosso** — Developer
-- **Laura Molina** — Developer
-- **Augusto Andrés Raffaeli** — Developer
-- **María Soledad Scarlata** — Developer
+La aplicación móvil busca trasladar las principales funcionalidades de la plataforma web al entorno Android, permitiendo a los usuarios acceder al catálogo, consultar productos, gestionar su cuenta y realizar las operaciones disponibles desde un dispositivo móvil.
 
+## Tecnologías
 
-## Propuesta de Valor
+* Android Studio
+* Java
+* JDK 17
+* Android SDK
+* API REST
+* Django REST Framework
+* MySQL
+* Autenticación con JWT
+* Git / GitHub
 
+## Arquitectura
 
-Nexus Digital ofrece una solución digital orientada al comercio local en Córdoba.
+La aplicación Android funciona como cliente del backend existente:
 
-La aplicación móvil permite trasladar la experiencia de la plataforma al entorno Android, facilitando el acceso a los productos y a las principales funcionalidades del sistema desde dispositivos móviles.
-
-
-## Tecnologías Utilizadas
-
-- Android Studio
-- Java
-- JDK 17
-- Android SDK
-- API REST
-- Backend: Django REST Framework
-- Base de Datos: MySQL
-
-
-
-## Pantallas / Activities
-
-
-La aplicación estará organizada inicialmente en las siguientes pantallas principales:
-
-
-| Integrante | Pantalla / Activity    | Clase Java              | Layout XML              | Responsabilidad                                                     |
-| ---------- | ---------------------- | ----------------------- | ----------------------- | ------------------------------------------------------------------- |
-| Laura Molina     | Splash / Bienvenida    | `SplashActivity.java`   | `activity_splash.xml`   | Pantalla inicial y validación de sesión.                            |
-| Soledad Scarlata      | Login                  | `LoginActivity.java`    | `activity_login.xml`    | Autenticación del usuario mediante la API.                          |
-| Juan Alonso    | Registro               | `RegisterActivity.java` | `activity_register.xml` | Registro de nuevos usuarios mediante la API.                        |
-| Yohana Grosso     | Catálogo / Inicio      | `HomeActivity.java`     | `activity_home.xml`     | Visualización del catálogo de productos.                            |
-| Griselda Aguirre       | Detalle del producto   | `DetailActivity.java`   | `activity_detail.xml`   | Visualización de la información completa del producto seleccionado. |
-| Andrés Raffaelli   | Perfil / Configuración | `ProfileActivity.java`  | `activity_profile.xml`  | Visualización de los datos del usuario y cierre de sesión.          |
-
-
-
-
-## Funcionalidades Principales
-
-
-La aplicación móvil permitirá:
-* Registrarse.
-* Iniciar sesión.
-* Consultar el catálogo de productos.
-* Visualizar el detalle de un producto.
-* Consultar la información del usuario.
-* Cerrar sesión.
-* Comunicarse con el backend mediante la API REST.
-  
-
-
-
-
-## Requerimientos Funcionales
-
-
-| Código   | Requisito Funcional                                                                                                                                                                                        |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **RF01** | La aplicación debe permitir a los usuarios registrarse ingresando sus datos personales y credenciales.                                                                                                     |
-| **RF02** | La aplicación debe permitir a los usuarios iniciar sesión mediante sus credenciales.                                                                                                                       |
-| **RF03** | La aplicación debe permitir visualizar el catálogo de productos disponibles.                                                                                                                               |
-| **RF04** | La aplicación debe permitir al usuario seleccionar un producto desde el catálogo y visualizar su información detallada, transfiriendo el identificador del producto entre las Activities correspondientes. |
-| **RF05** | La aplicación debe permitir visualizar la información del usuario autenticado.                                                                                                                             |
-| **RF06** | La aplicación debe permitir cerrar la sesión del usuario.                                                                                                                                                  |
-| **RF07** | La aplicación debe permitir comunicarse con el backend mediante una API REST para obtener y enviar información.                                                                                            |
-| **RF08** | La aplicación debe permitir navegar entre las distintas Activities y regresar desde una Activity hija a su Activity padre correspondiente.                                                                 |
-
-
-
-
-## Requerimientos No Funcionales
-
-
-| Código    | Requisito No Funcional                                                                                                         |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| **RNF01** | La aplicación debe adaptarse correctamente a diferentes tamaños y resoluciones de dispositivos Android.                        |
-| **RNF02** | La aplicación debe ofrecer una interfaz intuitiva y adecuada para la interacción mediante pantalla táctil.                     |
-| **RNF03** | La aplicación debe proteger las credenciales y los datos sensibles de los usuarios.                                            |
-| **RNF04** | La aplicación debe presentar una estructura modular y organizada que facilite su mantenimiento y futuras modificaciones.       |
-| **RNF05** | La aplicación debe gestionar adecuadamente los errores de comunicación con la API y proporcionar información clara al usuario. |
-| **RNF06** | La aplicación debe ofrecer tiempos de respuesta adecuados durante las operaciones realizadas por el usuario.                   |
-
-
-
-## Entorno de Desarrollo
-
-## Para el desarrollo y las pruebas se utilizarán:
-
-Android Studio.
-JDK 17.
-Android SDK.
-Dispositivos Android físicos.
-Cable USB de datos para ejecutar y probar la aplicación desde Android Studio.
-
-## Conexión con Nexus Digital Web
-
-La aplicación móvil forma parte del proyecto Nexus Digital y reutiliza el backend desarrollado previamente.
-
-La comunicación seguirá el siguiente flujo:
-
+```text
 Usuario
-│
+   ↓
 Aplicación Android
-│
+   ↓
 API REST
-│
+   ↓
 Django REST Framework
-│
+   ↓
 MySQL
+```
 
-Esto permite que la aplicación móvil utilice los servicios y datos proporcionados por el backend de Nexus Digital.
+La aplicación móvil forma parte del proyecto Nexus Digital y reutiliza el backend desarrollado previamente. Esto permite que la aplicación utilice los servicios y datos proporcionados por el backend de Nexus Digital.
+
+## Activities
+
+| Activity           | Funcionalidad           |
+| ------------------ | ----------------------- |
+| `SplashActivity`   | Pantalla inicial        |
+| `LoginActivity`    | Inicio de sesión        |
+| `RegisterActivity` | Registro de usuario     |
+| `HomeActivity`     | Catálogo de productos   |
+| `DetailActivity`   | Detalle del producto    |
+| `ProfileActivity`  | Perfil del usuario      |
+| `CartActivity`     | Carrito de compras      |
+| `ContactoActivity` | Información de contacto |
+
+## Funcionalidades
+
+* Registro e inicio de sesión, con elección de rol (comprador o vendedor).
+* Catálogo y detalle de productos.
+* Perfil y cierre de sesión.
+* Navegación entre pantallas.
+* Pantalla de contacto.
+* Comunicación con el backend mediante API REST.
+* CRUD de productos para vendedores.
+* Búsqueda y filtros de productos.
+* Carrito de compras.
+* Modificación y eliminación de productos del carrito.
+* Actualización de stock.
+* Validación de solicitudes y respuestas.
+* Manejo de errores de conexión.
+
+## Roles de usuario
+
+Al registrarse, la persona elige su rol:
+
+| Rol           | Qué puede hacer                                                                                               |
+| ------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Comprador** | Ver el catálogo y el detalle de productos, usar el carrito y confirmar compras.                               |
+| **Vendedor**  | Lo mismo que el comprador y, además, publicar, editar y eliminar **sus propios** productos.                   |
+
+La contraseña debe tener al menos 8 caracteres, ser alfanumérica e incluir un carácter especial. Estas reglas se validan en la app y también en el backend.
+
+## Historias de Usuario
+
+El proyecto contempla **13 Historias de Usuario (HU01–HU13)**, desde el registro y navegación hasta la integración con el servidor, gestión de productos, búsqueda, carrito y confirmación de compras.
+
+Los requerimientos funcionales detallados **RF01–RF19** se encuentran documentados en el IEEE830 y en la Wiki del proyecto.
+
+## Sprints
+
+### Sprint 1
+
+* Configuración del proyecto Android.
+* Creación de Activities y layouts.
+* Navegación.
+* Detalle de producto.
+* Pantalla de contacto.
+* Organización de GitHub y documentación.
+* Revisión inicial del backend.
+
+### Sprint 2
+
+* Integración Android con API REST.
+* CRUD de productos.
+* Búsqueda y filtros.
+* Carrito de compras.
+* Confirmación de compra.
+* Generación de órdenes y actualización de stock.
+* Pruebas y seguridad.
+
+## Control de versiones
+
+```text
+main
+  └── develop
+       └── ramas personales / funcionalidades
+```
+
+Se utilizan **Issues, Milestones, Projects, Pull Requests y Wiki** para organizar el trabajo colaborativo.
+
+## Entorno de desarrollo
+
+Para el desarrollo y las pruebas se utilizan:
+
+* Android Studio.
+* JDK 17.
+* Android SDK.
+* Dispositivos Android físicos.
+* Cable USB de datos para ejecutar y probar la aplicación desde Android Studio.
 
 ## Instalación
 
-## Requisitos previos
-Android Studio instalado.
-JDK 17.
-Android SDK configurado.
-Dispositivo Android para pruebas o emulador.
-Acceso al backend de Nexus Digital.
+### Requisitos previos
+
+* Android Studio instalado.
+* JDK 17.
+* Android SDK configurado.
+* Dispositivo Android para pruebas o emulador.
+* Python y MySQL para levantar el backend.
+* Celular y computadora conectados a la **misma red Wi-Fi**.
+
+### 1. Clonar el repositorio de la app
+
+```bash
+git clone https://github.com/Nexus-Proyecto/Nexus-Digital-App-Movil.git
+```
+
+### 2. Levantar el backend
+
+La app consume la API REST de Django, que está en el repositorio de Nexus Digital: https://github.com/Nexus-Proyecto/Nexus-Digital
+
+```bash
+cd Backend
+python -m venv env
+
+# Windows
+env\Scripts\activate
+# Linux / macOS
+source env/bin/activate
+
+pip install -r requirements.txt
+```
+
+Crear un archivo `.env` en la carpeta del backend con estas variables. Los valores son propios de cada computadora y **no se suben al repositorio**:
+
+```text
+SECRET_KEY=
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1,TU_IP
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+DB_HOST=
+DB_PORT=
+```
+
+Aplicar las migraciones y levantar el servidor escuchando en toda la red:
+
+```bash
+python manage.py migrate
+python manage.py runserver 0.0.0.0:8000
+```
+
+
+### 3. Obtener la IP de la computadora
+
+En una terminal de Windows ejecutar `ipconfig` y copiar la **Dirección IPv4** del adaptador Wi-Fi (por ejemplo `192.168.1.42`).
+
+> No usar IPs de adaptadores virtuales (VirtualBox, WSL, etc.): el celular no puede alcanzarlas.
+
+### 4. Configurar la IP en la app
+
+Abrir `app/src/main/java/com/ispc/nexusdigital/api/ApiClient.java` y reemplazar `TU_IP`:
+
+```java
+private static final String BASE_URL = "http://TU_IP:8000/";
+```
+
+> Este cambio es **local**: no se incluye en los commits ni en los Pull Requests.
+
+### 5. Ejecutar la app
+
+1. Abrir el proyecto en Android Studio y esperar el *Sync* de Gradle.
+2. Conectar el celular por USB y presionar **Run**.
+3. Iniciar sesión con un usuario de prueba, o registrarse eligiendo comprador o vendedor.
 
 ## Pruebas
 
-La aplicación será probada inicialmente en dispositivos Android físicos mediante conexión USB y utilizando las herramientas de depuración proporcionadas por Android Studio.
+La aplicación se prueba en dispositivos Android físicos mediante conexión USB, utilizando las herramientas de depuración de Android Studio.
+
+También se incluyen pruebas automatizadas: pruebas unitarias y pruebas de interfaz con Espresso para el flujo de inicio de sesión, con chequeos automáticos de accesibilidad.
 
 ## Documentación
 
-La documentación correspondiente al proyecto se encontrará disponible en la wiki del repositorio.
+La documentación del proyecto incluye:
+
+* IEEE830
+* Historias de Usuario
+* Requerimientos Funcionales
+* Planning Poker
+* Daily Scrum
+* Sprint Planning
+* Sprint Review
+* Sprint Retrospective
+* Casos de prueba
+* Evidencias de desarrollo
+* Plan de Seguridad
+* Plan de Prueba de Software
+
+La documentación completa se encuentra en la **[Wiki del repositorio](https://github.com/Nexus-Proyecto/Nexus-Digital-App-Movil/wiki)**.
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+
