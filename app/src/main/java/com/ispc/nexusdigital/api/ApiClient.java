@@ -10,13 +10,13 @@ import okhttp3.Request;
 
 public class ApiClient {
 
-    // URL utilizada por la aplicación normalmente.
+
     private static final String BASE_URL = "http://TU_IP:8000/";
 
     private static Retrofit retrofit;
     private static Context appContext;
 
-    // Se llama una vez desde HomeActivity para poder leer el token guardado
+
     public static void init(Context context) {
         appContext = context.getApplicationContext();
     }

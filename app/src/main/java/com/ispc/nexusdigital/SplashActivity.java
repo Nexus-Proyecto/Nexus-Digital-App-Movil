@@ -63,7 +63,7 @@ public class SplashActivity extends AppCompatActivity {
       String token = sessionManager.obtenerToken();
       
         if (token != null && !token.trim().isEmpty()) {
-            intent = new Intent(SplashActivity.this, MainActivity.class);
+            intent = new Intent(SplashActivity.this, HomeActivity.class);
         } else {
             intent = new Intent(SplashActivity.this, LoginActivity.class);
         }
