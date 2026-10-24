@@ -69,32 +69,56 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- Contraseña -->
-
-        <EditText
-            android:id="@+id/etPassword"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
             android:layout_marginTop="12dp"
-            android:hint="Contraseña (mín. 8, con letras, números y un carácter especial)"
-            android:inputType="textPassword"
+            android:hint="Contraseña"
+            app:endIconMode="password_toggle"
             app:layout_constraintTop_toBottomOf="@id/etEmail"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-        <EditText
-            android:id="@+id/etConfirmPassword"
+        <TextView
+            android:id="@+id/tvRequisitosPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:layout_marginTop="12dp"
-            android:hint="Confirmar contraseña"
-            android:inputType="textPassword"
-            app:layout_constraintTop_toBottomOf="@id/etPassword"
+            android:layout_marginTop="6dp"
+            android:text="@string/requisitos_password"
+            android:textSize="13sp"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintTop_toBottomOf="@id/tilPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfirmPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Confirmar contraseña"
+            app:endIconMode="password_toggle"
+            app:layout_constraintTop_toBottomOf="@id/tvRequisitosPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
 
         <RadioGroup
@@ -103,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/etConfirmPassword"
+            app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
