@@ -44,4 +44,7 @@ public interface ApiService {
 
     @DELETE("api/productos-api/{id}/")
     Call<Void> eliminarProducto(@Path("id") int idProducto);
+
+    @DELETE("api/usuarios/me/")
+    Call<Void> eliminarMiCuenta();
 }
